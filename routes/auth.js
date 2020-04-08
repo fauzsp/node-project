@@ -1,12 +1,9 @@
 const express = require("express");
-const config = require("config");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const _ = require("lodash");
 const Joi = require("Joi");
 const { User } = require("../models/user");
 const router = express.Router();
-
 
 router.get("/", async (req, res) => {
     const result = await User.find();
@@ -25,8 +22,7 @@ router.post("/", async (req, res) => {
     const validPass = await bcrypt.compare(req.body.password, user.password);
     if (!validPass) return res.status(400).send("Invalid username or password");
 
-    const token = jwt.sign({ _id: user._id }, process.env.JWT_KEY);
-    // const token = jwt.sign({ _id: user._id }, config.get("jwtPrivateKey"));
+    const token = user.generateAuth();
 
     res.send(token);
     console.log(token);
