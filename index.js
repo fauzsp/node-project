@@ -17,7 +17,7 @@ if (!process.env.JWT_KEY) {
 
 mongoose.connect('mongodb://localhost/movierental')
     .then(() => console.log('Connected to MongoDB...'))
-    .catch(err => console.error('Could not connxect to MongoDB...'));
+    .catch(err => console.error('Failed to connect the database MongoDB...'));
 
 app.use(express.json());
 app.use("/api/genres", genres);
