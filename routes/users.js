@@ -1,6 +1,6 @@
 const express = require("express");
 require("dotenv").config();
-const jwt = require("jsonwebtoken");
+const auth = require("../middleware/auth");
 const bcrypt = require("bcrypt");
 const _ = require("lodash");
 const { User, validate } = require("../models/user");
@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 })
 
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     let user = await User.findOne({ email: req.body.email });
