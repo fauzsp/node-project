@@ -13,12 +13,12 @@ router.get("/me", auth, async (req, res) => {
     res.send(user);
 })
 
-router.get("/logout", auth, async (req, res) => {
-    let token = req.header("x-auth-token");
-    const result = "";
-    token = result;
-    res.send(token);
-})
+// router.get("/logout", auth, async (req, res) => {
+//     let token = req.header("x-auth-token");
+//     const result = "";
+//     token = result;
+//     res.send(token);
+// })
 
 
 router.get("/", async (req, res) => {

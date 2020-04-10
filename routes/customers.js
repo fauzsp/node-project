@@ -9,6 +9,17 @@ router.get("/", async (req, res) => {
     res.send(result);
 });
 
+// router.get("/:id", async (req, res) => {
+//     const customer = await Customer.find().select("name phone -_id");
+//     const list = Object.keys(customer).map(function (key) {
+//         return [Number(key), customer[key]];
+//     });
+//     const result = list[req.params.id];
+//     if (!result) return res.send(false);
+//     console.log(result);
+//     res.send(result);
+// });
+
 router.post("/", async (req, res) => {
     const { error } = validate(res.body);
     if (error) return res.status(400).send(error.details[0].message);
